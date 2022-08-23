@@ -98,23 +98,34 @@ section {
         }
     }
     .modal-container {
-        position: relative;
-        display: inline-flex;
+        position: fixed;
+        z-index: 99;
+        top:0;
+        bottom: 0;
+        right:0;
+        left:0;
+        display: flex;
         flex-direction: column;
         justify-content: center;
-        width: max-content;
-        color: $pink;
+        align-items: center;
+        margin: auto;
+        background-color:  rgba(10,7,89,.6);
+        animation: modalopen 1s;
         .modal {
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: center;
+            width: max-content;
+            color: $pink;
             padding: 1rem 2rem;
             background: rgba(218,190,91,.8);
             text-align: left;
-            animation: modalopen 1s;
+
             .close-icon {
+                text-align: right;
                 font-size: 24px;
             }
             .modal-header {
-                margin-top: 1rem;
-                margin-right: 1rem;
                 font-size: 20px;
             }
             .modal-content {
@@ -124,11 +135,14 @@ section {
                         justify-content: space-between;
                         padding: 0.5rem 0;
                         .form-label {
-                            padding-right: 0.5rem;
+                            padding-right: 1rem;
+                            padding-bottom: 0.5rem;
                         }
                         .form-input{
                             border: 1px solid $pink;
                             border-radius: 5px;
+                            height: 30px;
+                            min-width: 200px;
                         }
                     }
                     button {
