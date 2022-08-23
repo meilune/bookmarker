@@ -5,6 +5,7 @@ $pink: #A421A6;
 $blue: #0E08A6;
 $light-blue: #0FC9F2;
 $dark-blue: #0A0759;
+$white: #fff;
 
 
 html {
@@ -22,7 +23,7 @@ body {
     background-position: center;
     background-size: cover;
     position: relative;
-    color: $dark-blue;
+    color: $white;
     &:before {
         content: "";
         position: absolute;
@@ -35,11 +36,20 @@ body {
     }
 }
 
-h1, h2 {
+h1, h2, h3, a {
     font-family: timonium, sans-serif;
     font-weight: 700;
     font-style: normal;
-    color: #fff;
+    text-decoration: none;
+}
+
+.fa-solid {
+    float: right;
+    z-index: 2;
+    cursor: pointer;
+    &:hover {
+        color: $pink;
+    }
 }
 
 section {
@@ -50,24 +60,92 @@ section {
     h1 {
         position: relative;
         display: inline-block;
-        padding: 0.2rem 2rem;
+        padding: 0.4rem 2rem;
         font-size: 48px;
-        width: auto;
         background: rgba(218,190,91,.8);
+        color: $pink;
     }
     .container {
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
         margin: auto;
         width: 90vw;
+        padding-bottom: 3rem;
         .bookmark {
-            position: relative;
-            display: inline-block;
-            max-width: 200px;
             background: rgba(218,190,91,.8);
-            padding: 2rem;
-            margin: 2rem
+            padding: 1rem 1rem 1.5rem 1.5rem;
+            margin: 2rem;
+            .name {
+                display: flex;
+                align-items: center;
+                margin-top: 1rem;
+                margin-right: 1rem;
+                img {
+                    max-width: 25px;
+                }
+                a {
+                    font-size: 24px;
+                    padding: 0.2rem;
+                    &:visited {
+                        color: $white;
+                    }
+                    &:hover {
+                        color: $pink;
+                    }
+                }
+            }
         }
+    }
+    .modal-container {
+        position: relative;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        width: max-content;
+        color: $pink;
+        .modal {
+            padding: 1rem 2rem;
+            background: rgba(218,190,91,.8);
+            text-align: left;
+            animation: modalopen 1s;
+            .close-icon {
+                font-size: 24px;
+            }
+            .modal-header {
+                margin-top: 1rem;
+                margin-right: 1rem;
+            }
+            .form-group {
+                display: flex;
+                justify-content: space-between;
+                padding: 0.5rem 0;
+                .form-label {
+                    padding-right: 0.5rem;
+                }
+                .form-input{
+                    border: 1px solid $pink;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+}
 
+/*Keyframes*/
+@keyframes modalopen {
+        from {
+            opacity: 0;
+        }   
+        to {
+            opacity: 1;
+        }     
+}
+
+/* Mobile Version */
+@media only screen and (max-width: 600px) {
+    .container {
+        flex-direction: column;
+        justify-content: center;
     }
 }

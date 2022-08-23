@@ -15,7 +15,7 @@ body {
   background-position: center;
   background-size: cover;
   position: relative;
-  color: #0A0759;
+  color: #fff;
 }
 
 body:before {
@@ -29,11 +29,21 @@ body:before {
   background: rgba(218, 190, 91, 0.4);
 }
 
-h1, h2 {
+h1, h2, h3, a {
   font-family: timonium, sans-serif;
   font-weight: 700;
   font-style: normal;
-  color: #fff;
+  text-decoration: none;
+}
+
+.fa-solid {
+  float: right;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.fa-solid:hover {
+  color: #A421A6;
 }
 
 section {
@@ -46,28 +56,143 @@ section {
 section h1 {
   position: relative;
   display: inline-block;
-  padding: 0.2rem 2rem;
+  padding: 0.4rem 2rem;
   font-size: 48px;
-  width: auto;
   background: rgba(218, 190, 91, 0.8);
+  color: #A421A6;
 }
 
 section .container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin: auto;
   width: 90vw;
+  padding-bottom: 3rem;
 }
 
 section .container .bookmark {
-  position: relative;
-  display: inline-block;
-  max-width: 200px;
   background: rgba(218, 190, 91, 0.8);
-  padding: 2rem;
+  padding: 1rem 1rem 1.5rem 1.5rem;
   margin: 2rem;
+}
+
+section .container .bookmark .name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+section .container .bookmark .name img {
+  max-width: 25px;
+}
+
+section .container .bookmark .name a {
+  font-size: 24px;
+  padding: 0.2rem;
+}
+
+section .container .bookmark .name a:visited {
+  color: #fff;
+}
+
+section .container .bookmark .name a:hover {
+  color: #A421A6;
+}
+
+section .modal-container {
+  position: relative;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  color: #A421A6;
+}
+
+section .modal-container .modal {
+  padding: 1rem 2rem;
+  background: rgba(218, 190, 91, 0.8);
+  text-align: left;
+  -webkit-animation: modalopen 1s;
+          animation: modalopen 1s;
+}
+
+section .modal-container .modal .close-icon {
+  font-size: 24px;
+}
+
+section .modal-container .modal .modal-header {
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+section .modal-container .modal .form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+section .modal-container .modal .form-group .form-label {
+  padding-right: 0.5rem;
+}
+
+section .modal-container .modal .form-group .form-input {
+  border: 1px solid #A421A6;
+  border-radius: 5px;
+}
+
+/*Keyframes*/
+@-webkit-keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mobile Version */
+@media only screen and (max-width: 600px) {
+  .container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 /*# sourceMappingURL=style.css.map */
