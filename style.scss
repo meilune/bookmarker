@@ -1,0 +1,73 @@
+@import url("https://use.typekit.net/qkg7lgm.css");
+
+$yellow: #DABE5B;
+$pink: #A421A6;
+$blue: #0E08A6;
+$light-blue: #0FC9F2;
+$dark-blue: #0A0759;
+
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: timonium, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    background: url("/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    color: $dark-blue;
+    &:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        left: 0; 
+        right: 0;
+        top: 0; 
+        bottom: 0;
+        background: rgba(218,190,91,.4);
+    }
+}
+
+h1, h2 {
+    font-family: timonium, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: #fff;
+}
+
+section {
+    width: 100vw;
+    height: 100vh;
+    margin: auto;
+    text-align: center;
+    h1 {
+        position: relative;
+        display: inline-block;
+        padding: 0.2rem 2rem;
+        font-size: 48px;
+        width: auto;
+        background: rgba(218,190,91,.8);
+    }
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto;
+        width: 90vw;
+        .bookmark {
+            position: relative;
+            display: inline-block;
+            max-width: 200px;
+            background: rgba(218,190,91,.8);
+            padding: 2rem;
+            margin: 2rem
+        }
+
+    }
+}
