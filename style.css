@@ -29,7 +29,7 @@ body:before {
   background: rgba(218, 190, 91, 0.4);
 }
 
-h1, h2, h3, a {
+h1, h2, h3, a, button {
   font-family: timonium, sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -144,9 +144,10 @@ section .modal-container .modal .close-icon {
 section .modal-container .modal .modal-header {
   margin-top: 1rem;
   margin-right: 1rem;
+  font-size: 20px;
 }
 
-section .modal-container .modal .form-group {
+section .modal-container .modal .modal-content .bookmark-form .form-group {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -156,13 +157,32 @@ section .modal-container .modal .form-group {
   padding: 0.5rem 0;
 }
 
-section .modal-container .modal .form-group .form-label {
+section .modal-container .modal .modal-content .bookmark-form .form-group .form-label {
   padding-right: 0.5rem;
 }
 
-section .modal-container .modal .form-group .form-input {
+section .modal-container .modal .modal-content .bookmark-form .form-group .form-input {
   border: 1px solid #A421A6;
   border-radius: 5px;
+}
+
+section .modal-container .modal .modal-content .bookmark-form button {
+  margin-top: 1rem;
+  display: block !important;
+  width: 100% !important;
+  color: #fff;
+  background-color: #A421A6;
+  padding: 0.2rem;
+  cursor: pointer;
+  border: 1px solid #A421A6;
+  border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+section .modal-container .modal .modal-content .bookmark-form button:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 /*Keyframes*/
