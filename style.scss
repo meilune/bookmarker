@@ -88,6 +88,7 @@ section {
                 a {
                     font-size: 24px;
                     padding: 0.2rem;
+                    color: $white;
                     &:visited {
                         color: $white;
                     }
@@ -105,7 +106,7 @@ section {
         bottom: 0;
         right:0;
         left:0;
-        display: flex;
+        display: none;
         flex-direction: column;
         justify-content: center;
         align-items: center;

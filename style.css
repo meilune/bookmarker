@@ -102,6 +102,7 @@ section .container .bookmark .name img {
 section .container .bookmark .name a {
   font-size: 24px;
   padding: 0.2rem;
+  color: #fff;
 }
 
 section .container .bookmark .name a:visited {
@@ -119,9 +120,7 @@ section .modal-container {
   bottom: 0;
   right: 0;
   left: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
