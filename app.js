@@ -30,74 +30,66 @@ function closeModalForm() {
     modalCont.style.display = "none";
 }
 
-// //Function to remove the bookmark and the data
-// function deleteBkm(e) {
-//     console.log(e.target);
-//     bookmark.style.display = "none";
-//  }
-
- // Delete Bookmark
-function deleteBookmark(url) {
-    // Loop through the bookmarks array
-    console.log(url);
-    // allBookmarks.forEach((bookmark, i) => {
-    //   if (bookmark.URL === url) {
-    //     allBookmarks.splice(i, 1);
-    //   }
-    // });
-    // // Update bookmarks array in localStorage, re-populate DOM
-    // localStorage.setItem('bookmarks', JSON.stringify(allBookmarks));
-    // createNewElements();
-  }
-
 //Creating Bookmark elements
 function createNewElements() {
-        // Create new Bookmark Div and append child of closing icon
-        const newBkm = document.createElement("div");
-        newBkm.className = "bookmark";
-        const bkmIcon = document.createElement("i");
-        bkmIcon.className = "fa-solid fa-xmark";
-        bkmIcon.setAttribute('onclick', `deleteBookmark('${newWebURL}')`);
-        bookmarksCont.appendChild(newBkm);
-        newBkm.appendChild(bkmIcon);
-        // Create a new div called Name for the link 
-        const newName = document.createElement("div");
-        newName.className = "name";
-        newBkm.appendChild(newName);
+    // Create new Bookmark Div and append child of closing icon
+    const newBkm = document.createElement("div");
+    newBkm.className = "bookmark";
+    const bkmIcon = document.createElement("i");
+    bkmIcon.className = "fa-solid fa-xmark";
+    bkmIcon.setAttribute('title', 'Delete Bookmark');
+    bkmIcon.setAttribute('onclick', `deleteBookmark('${newWebURL}')`);
+    bookmarksCont.appendChild(newBkm);
+    newBkm.appendChild(bkmIcon);
+    // Create a new div called Name for the link 
+    const newName = document.createElement("div");
+    newName.className = "name";
+    newBkm.appendChild(newName);
 
-        //Create elements for favicon and URL
-        const newBkmImg = document.createElement("img");
-        const newBkmURL = document.createElement("a");
-        newBkmImg.src = `https://s2.googleusercontent.com/s2/favicons?domain_url=${newWebURL}&sz=32`;
-        newBkmImg.alt = newWebsiteName;
-        newBkmURL.href = newWebURL;
-        newBkmURL.target = "_blank";
-        newBkmURL.innerHTML = newWebsiteName;
-        newName.appendChild(newBkmImg);
-        newName.appendChild(newBkmURL);
+    //Create elements for favicon and URL
+    const newBkmImg = document.createElement("img");
+    const newBkmURL = document.createElement("a");
+    newBkmImg.src = `https://s2.googleusercontent.com/s2/favicons?domain_url=${newWebURL}&sz=32`;
+    newBkmImg.alt = newWebsiteName;
+    newBkmURL.href = newWebURL;
+    newBkmURL.target = "_blank";
+    newBkmURL.innerHTML = newWebsiteName;
+    newName.appendChild(newBkmImg);
+    newName.appendChild(newBkmURL);
 }
 
+//Get the input information and place it in the new bookmark
 function updateBookmark(e) {
-        //Prevent page from refreshing when the button is clicked
-        e.preventDefault();
-        newWebsiteName = e.srcElement[0].value;
-        newWebURL = e.srcElement[1].value;
-        if (!newWebURL.includes('https://') && !newWebURL.includes('http://')) {
-            newWebURL = `https://${newWebURL}`; 
-        }
-        validate(newWebsiteName, newWebURL);
-        formBtn.addEventListener('click', closeModalForm);
-
-        //Saving in Local Storage the object of countdown
-        savedBookmarks = {
-            title: newWebsiteName,
-            URL: newWebURL
-        }
-        //Saving object into array and saving array on the storage
-        allBookmarks = JSON.parse(localStorage.getItem('bookmarks')) ? JSON.parse(localStorage.getItem('bookmarks')) : []
-        allBookmarks.push(savedBookmarks)
-        localStorage.setItem('bookmarks', JSON.stringify(allBookmarks))
+    //Prevent page from refreshing when the button is clicked, to avoid refreshing when alert appears
+    e.preventDefault();
+    //get the values
+    newWebsiteName = e.srcElement[0].value;
+    newWebURL = e.srcElement[1].value;
+    //Check if the values are suitable and validate them
+    if (!newWebURL.includes('https://') && !newWebURL.includes('http://')) {
+        newWebURL = `https://${newWebURL}`; 
+    }
+    //Validate function also updates the elements and refreshes the page
+    validate(newWebsiteName, newWebURL);
 }
+
+ // Delete Bookmark
+ function deleteBookmark(url) {
+    // Loop through the bookmarks array
+    console.log(url);
+    console.log(allBookmarks)
+
+    allBookmarks.forEach((savedBookmarks, i) => {
+        console.log(savedBookmarks.URL);
+        if(savedBookmarks.URL === url) {
+            allBookmarks.splice(i, 1);
+            localStorage.removeItem('bookmarks');
+        }
+    })
+    //Check the local storage again
+    localStorage.setItem('bookmarks', JSON.stringify(allBookmarks));
+    window.location.reload();
+  }
 
 
 function restorePrev() {
@@ -128,23 +120,26 @@ function validate(newWebsiteName, newWebURL){
     }
     //Valid
     createNewElements();
+
+    //Saving in Local Storage the object of countdown
+    savedBookmarks = {
+        title: newWebsiteName,
+        URL: newWebURL
+    }
+    //Saving object into array and saving array on the storage
+    allBookmarks = JSON.parse(localStorage.getItem('bookmarks')) ? JSON.parse(localStorage.getItem('bookmarks')) : []
+    allBookmarks.push(savedBookmarks)
+    localStorage.setItem('bookmarks', JSON.stringify(allBookmarks));
+
+    //Reloading the page only after the correct information was inserted
+    window.location.reload();
     return true;
 }
 
-
-
-
-
 //Adding event listeners
-// bookmarkExit.addEventListener('click', deleteBkm);
-
 bookmarkForm.addEventListener('submit', updateBookmark);
 showModalContainer.addEventListener('click', showModal);
-
 closeModal.addEventListener('click', closeModalForm);
-
-
-
 
 //Check if there is local storage and restore it
 restorePrev();
