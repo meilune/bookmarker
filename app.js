@@ -53,7 +53,8 @@ function updateBookmark(e) {
         newWebsiteName = e.srcElement[0].value;
         newWebURL = e.srcElement[1].value;
         if (!newWebURL.includes('https://') && !newWebURL.includes('http://')) {
-            urlValue = `https://${newWebURL}`; 
+            newWebURL = `https://${newWebURL}`; 
+            console.log(newWebURL)
         }
         createNewElements();
 
@@ -83,7 +84,10 @@ function restorePrev() {
     }
 }
 
+//Function to remove the bookmark and the data
+function deleteBkm() {
 
+}
 
 //Opening the form
 function showModal() {
@@ -100,6 +104,8 @@ showModalContainer.addEventListener('click', showModal);
 
 closeModal.addEventListener('click', closeModalForm);
 formBtn.addEventListener('click', closeModalForm);
+
+bookmarkExit.addEventListener('click', deleteBkm)
 
 //Check if there is local storage and restore it
 restorePrev();
