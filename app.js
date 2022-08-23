@@ -30,13 +30,34 @@ function closeModalForm() {
     modalCont.style.display = "none";
 }
 
+// //Function to remove the bookmark and the data
+// function deleteBkm(e) {
+//     console.log(e.target);
+//     bookmark.style.display = "none";
+//  }
+
+ // Delete Bookmark
+function deleteBookmark(url) {
+    // Loop through the bookmarks array
+    console.log(url);
+    // allBookmarks.forEach((bookmark, i) => {
+    //   if (bookmark.URL === url) {
+    //     allBookmarks.splice(i, 1);
+    //   }
+    // });
+    // // Update bookmarks array in localStorage, re-populate DOM
+    // localStorage.setItem('bookmarks', JSON.stringify(allBookmarks));
+    // createNewElements();
+  }
+
+//Creating Bookmark elements
 function createNewElements() {
         // Create new Bookmark Div and append child of closing icon
         const newBkm = document.createElement("div");
         newBkm.className = "bookmark";
         const bkmIcon = document.createElement("i");
         bkmIcon.className = "fa-solid fa-xmark";
-        bkmIcon.id = "delete-bookmark";
+        bkmIcon.setAttribute('onclick', `deleteBookmark('${newWebURL}')`);
         bookmarksCont.appendChild(newBkm);
         newBkm.appendChild(bkmIcon);
         // Create a new div called Name for the link 
@@ -59,7 +80,6 @@ function createNewElements() {
 function updateBookmark(e) {
         //Prevent page from refreshing when the button is clicked
         e.preventDefault();
-        console.log(e);
         newWebsiteName = e.srcElement[0].value;
         newWebURL = e.srcElement[1].value;
         if (!newWebURL.includes('https://') && !newWebURL.includes('http://')) {
@@ -100,38 +120,29 @@ function validate(newWebsiteName, newWebURL){
     const regex = new RegExp(expression);
     if(!newWebURL || !newWebsiteName) {
         alert("Please provide values for both fields.");
+        return false;
     }
     if(!newWebURL.match(regex)) {
         alert("Please provide a valid web address");
-        return false
+        return false;
     }
     //Valid
     createNewElements();
     return true;
 }
 
-//Function to remove the bookmark and the data
-// function deleteBkm(e) {
-//     if(localStorage.getItem("bookmarks")) {
-//         //Getting array from the storage
-//         allBookmarks = JSON.parse(localStorage.getItem("bookmarks"));
-//         for(let i = 0; i < allBookmarks.length; i++) {
-//         // Assigning values for each object in the array
-//         newWebsiteName = allBookmarks[i].title;
-//         newWebURL = allBookmarks[i].URL;
-//         createNewElements();
-//         }
-//     }
-// }
+
 
 
 
 //Adding event listeners
+// bookmarkExit.addEventListener('click', deleteBkm);
+
 bookmarkForm.addEventListener('submit', updateBookmark);
 showModalContainer.addEventListener('click', showModal);
 
 closeModal.addEventListener('click', closeModalForm);
-// bookmarkExit.addEventListener('click', deleteBkm);
+
 
 
 
