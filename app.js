@@ -21,6 +21,15 @@ let savedBookmarks = {};
 let allBookmarks = [];
 savedBookmarks.allBookmarks = allBookmarks;
 
+//Opening the form
+function showModal() {
+    modalCont.style.display = "flex";
+}
+//Closing the form
+function closeModalForm() {
+    modalCont.style.display = "none";
+}
+
 function createNewElements() {
         // Create new Bookmark Div and append child of closing icon
         const newBkm = document.createElement("div");
@@ -53,13 +62,11 @@ function updateBookmark(e) {
         console.log(e);
         newWebsiteName = e.srcElement[0].value;
         newWebURL = e.srcElement[1].value;
-        console.log(newWebURL);
         if (!newWebURL.includes('https://') && !newWebURL.includes('http://')) {
             newWebURL = `https://${newWebURL}`; 
-            console.log(newWebURL)
         }
         validate(newWebsiteName, newWebURL);
-        createNewElements();
+        formBtn.addEventListener('click', closeModalForm);
 
         //Saving in Local Storage the object of countdown
         savedBookmarks = {
@@ -87,21 +94,20 @@ function restorePrev() {
     }
 }
 
-//Validating the form entries
+//Validating the form entries and creating entries if valid
 function validate(newWebsiteName, newWebURL){
     const expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
     const regex = new RegExp(expression);
     if(!newWebURL || !newWebsiteName) {
-        alert("Please provide values for both fields.")
-    }
-    if(newWebURL.match(regex)) {
-        formBtn.addEventListener('click', closeModalForm);
+        alert("Please provide values for both fields.");
     }
     if(!newWebURL.match(regex)) {
         alert("Please provide a valid web address");
-        return false;
+        return false
     }
-
+    //Valid
+    createNewElements();
+    return true;
 }
 
 //Function to remove the bookmark and the data
@@ -118,22 +124,13 @@ function validate(newWebsiteName, newWebURL){
 //     }
 // }
 
-//Opening the form
-function showModal() {
-    modalCont.style.display = "flex";
-}
-//Closing the form
-function closeModalForm() {
-    modalCont.style.display = "none";
-}
+
 
 //Adding event listeners
 bookmarkForm.addEventListener('submit', updateBookmark);
 showModalContainer.addEventListener('click', showModal);
 
 closeModal.addEventListener('click', closeModalForm);
-// formBtn.addEventListener('click', closeModalForm);
-
 // bookmarkExit.addEventListener('click', deleteBkm);
 
 

@@ -6,7 +6,6 @@ html {
 
 body {
   margin: 0;
-  min-height: 100vh;
   font-family: timonium, sans-serif;
   font-weight: 500;
   font-style: normal;
@@ -26,6 +25,7 @@ body:before {
   right: 0;
   top: 0;
   bottom: 0;
+  height: auto;
   background: rgba(218, 190, 91, 0.4);
 }
 
@@ -81,7 +81,7 @@ section .container {
 section .container .bookmark {
   background: rgba(218, 190, 91, 0.8);
   padding: 1rem 1rem 1.5rem 1.5rem;
-  margin: 2rem;
+  margin: 1rem;
 }
 
 section .container .bookmark .name {
