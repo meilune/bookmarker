@@ -50,12 +50,15 @@ function createNewElements() {
 function updateBookmark(e) {
         //Prevent page from refreshing when the button is clicked
         e.preventDefault();
+        console.log(e);
         newWebsiteName = e.srcElement[0].value;
         newWebURL = e.srcElement[1].value;
+        console.log(newWebURL);
         if (!newWebURL.includes('https://') && !newWebURL.includes('http://')) {
             newWebURL = `https://${newWebURL}`; 
             console.log(newWebURL)
         }
+        validate(newWebsiteName, newWebURL);
         createNewElements();
 
         //Saving in Local Storage the object of countdown
@@ -84,18 +87,44 @@ function restorePrev() {
     }
 }
 
-//Function to remove the bookmark and the data
-function deleteBkm() {
+//Validating the form entries
+function validate(newWebsiteName, newWebURL){
+    const expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
+    const regex = new RegExp(expression);
+    if(!newWebURL || !newWebsiteName) {
+        alert("Please provide values for both fields.")
+    }
+    if(newWebURL.match(regex)) {
+        formBtn.addEventListener('click', closeModalForm);
+    }
+    if(!newWebURL.match(regex)) {
+        alert("Please provide a valid web address");
+        return false;
+    }
 
 }
+
+//Function to remove the bookmark and the data
+// function deleteBkm(e) {
+//     if(localStorage.getItem("bookmarks")) {
+//         //Getting array from the storage
+//         allBookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+//         for(let i = 0; i < allBookmarks.length; i++) {
+//         // Assigning values for each object in the array
+//         newWebsiteName = allBookmarks[i].title;
+//         newWebURL = allBookmarks[i].URL;
+//         createNewElements();
+//         }
+//     }
+// }
 
 //Opening the form
 function showModal() {
-    modal.style.display = "flex";
+    modalCont.style.display = "flex";
 }
 //Closing the form
 function closeModalForm() {
-    modal ? modal.style.display = "none" : modal.style.display = "flex"
+    modalCont.style.display = "none";
 }
 
 //Adding event listeners
@@ -103,9 +132,11 @@ bookmarkForm.addEventListener('submit', updateBookmark);
 showModalContainer.addEventListener('click', showModal);
 
 closeModal.addEventListener('click', closeModalForm);
-formBtn.addEventListener('click', closeModalForm);
+// formBtn.addEventListener('click', closeModalForm);
 
-bookmarkExit.addEventListener('click', deleteBkm)
+// bookmarkExit.addEventListener('click', deleteBkm);
+
+
 
 //Check if there is local storage and restore it
 restorePrev();
