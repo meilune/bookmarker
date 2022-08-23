@@ -60,6 +60,7 @@ section h1 {
   font-size: 48px;
   background: rgba(218, 190, 91, 0.8);
   color: #A421A6;
+  cursor: pointer;
 }
 
 section .container {
